@@ -183,7 +183,7 @@ protected:
 
 	for (int ii=0;ii<6;ii++)
 	  for (int jj=0;jj<6;jj++){
-	    odom_msg_.pose.covariance[jj*6+ii] = ii==jj ? 1e-5 : 1e-15;
+	    odom_msg_.pose.covariance[jj*6+ii] = ii==jj ? 1e-7 : 0.0;
 	  }
       
       }
