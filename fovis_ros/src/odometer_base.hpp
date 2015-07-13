@@ -21,6 +21,12 @@ namespace fovis_ros
 /**
  * Base class for fovis odometers.
  */
+
+  float random_sign(){
+    return (((float)(rand()%2))-0.5)*2.0;
+  }
+
+
 class OdometerBase
 {
 
@@ -180,10 +186,10 @@ protected:
         for (int i=0;i<6;i++)
           for (int j=0;j<6;j++)
             odom_msg_.twist.covariance[j*6+i] = motion_cov(i,j);
-
+	srand(47);  // get same covariance values
         for (int i=0;i<6;i++)
           for (int j=0;j<6;j++){
-            odom_msg_.pose.covariance[j*6+i] = i==j ? 1.0e-7 : 1.0e-11;
+            odom_msg_.pose.covariance[j*6+i] = i==j ? 1.0e-7 : random_sign()*1.0e-11;
           }
 
       }
